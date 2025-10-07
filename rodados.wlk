@@ -119,7 +119,8 @@ class Dependencia {
 
   method totalDePasajeros() = pedidos.sum({pedido => pedido.cantidadDePasajeros()})
 
-  method cualesPedidosNoSonSatisfechos(auto) = pedidos.filter({pedido => !pedido.satisfaceElPedido(auto)})
+  method cualesPedidosNoSonSatisfechos(auto) = 
+    pedidos.filter({pedido => !pedido.satisfaceElPedido(auto)})
 
   method  todosLosPedidosTieneColorinCompatible(color) = pedidos.all({pedido => !pedido.esColorIncompatible(color)})
 

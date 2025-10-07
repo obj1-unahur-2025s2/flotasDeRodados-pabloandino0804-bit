@@ -1,4 +1,4 @@
-import example.pepita
+import rodados.*
 
 describe "group of tests for pepita" {
 

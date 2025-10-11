@@ -3,16 +3,17 @@ import wollok.game.*
 import rodados.*
 
 program PepitaGame {
-	game.title("Pepita")
+	game.title("Corsas en el game")
 	game.height(10)
 	game.width(10)
 
 	// add assets in asset folder, for example, for the background
   // game.boardGround("fondo2.jpg")
+	
+	// 
+	const corsa = new Corsa(image="autitoRojo2.png")
 
-	//
-
-	game.showAttributes(pepita) //Debug
+	game.addVisual(corsa)
 
 	game.start()
 }

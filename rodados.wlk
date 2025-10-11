@@ -1,37 +1,58 @@
+import wollok.game.*
+
 // Etapa 1
 // Chevrolet Corsa
 class Corsa {
-  const property color
+  var property image
+  // const property color
+  var position = game.at(4,7)
+  method position() = position
+  method position(nuevaPosicion) {
+    position = nuevaPosicion
+  }
+  const posiciones = #{position}
   method capacidad() = 4
-
   method velocidadMaxima() = 150
-  
   method peso() = 1300
+  method pasoPor(posicion) {
+    return posiciones.contains(posicion)
+  }
 
+  method moverseHacia(direccion) {
+    if (direccion == norte.direcc()) {
+      self.position(self.position().up(1))
+    }
+    else if(direccion == sur.direcc()) {self.position(self.position().down(1))}
+    else if(direccion == oeste.direcc()) {self.position(self.position().left(1))}
+    else {self.position(self.position().right(1))}
+  }
+
+  
+  method pasoPorFila(numero) {
+
+  }
 }
+
+object norte {method direcc() = self}
+object sur {method direcc() = self}
+object oeste {method direcc() = self}
+object este {method direcc() = self}
 
 // Renault Kwid
 class Kwid {
   var tieneTanqueDeGas = false
-
   method agregarTanque() {
     tieneTanqueDeGas = true
   }
   method sacarTanque() {
     tieneTanqueDeGas = false
   }
-
   method tieneTanqueDeGas() = tieneTanqueDeGas
-  
   method capacidad() = if (tieneTanqueDeGas) 3 else 4
-
   method velocidadMaxima() = if (tieneTanqueDeGas) 110 else 10
-  
   method  peso() = 1200 + self.adicionDeTanque()
-
   method adicionDeTanque() =
     if (tieneTanqueDeGas) 150 else 0
-  
   method color() = "Azul"
 }
 
@@ -39,7 +60,6 @@ class Kwid {
 object trafic {
   var property interior = comodo
   var property motor = pulenta
-
   method capacidad() = interior.capacidadPasajeros()
 
   method velocidadMaxima() = motor.velocidadMaxima()
@@ -71,6 +91,7 @@ object batalon {
   method velocidadMaxima() = 80
 }
 
+// Auto Especial
 class AutoEspecial {
   const property capacidad
   const property velocidadMaxima

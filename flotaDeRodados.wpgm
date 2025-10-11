@@ -1,5 +1,5 @@
 import wollok.game.*
-import rodados.*
+import rodados2.*
 
 program CorsasEnElJuego {
 	game.title("Corsas en el game")

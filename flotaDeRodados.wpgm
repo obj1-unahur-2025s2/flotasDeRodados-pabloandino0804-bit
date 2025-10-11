@@ -1,29 +1,50 @@
 import wollok.game.*
 import rodados.*
 
-program CorsasEnElJuego {
+program Corsas {
 	game.title("Corsas en el game")
-	game.height(15)
-	game.width(15)
-
+	game.height(10)
+	game.width(10)
+	game.cellSize(50)
 	// add assets in asset folder, for example, for the background
-  // game.boardGround("fondo2.jpg")
+	// game.boardGround("fondo2.jpg")
+	//
+	const corsa1 = new Corsa(image = "autitoRojo2.png")
 	
-	
-
-	const corsa1 = new Corsa(image="autitoRojo2.png")
-	keyboard.w().onPressDo({corsa1.moverseHacia(norte) game.say(corsa1, corsa1.posiciones().toString())}) 
-	keyboard.s().onPressDo({corsa1.moverseHacia(sur) game.say(corsa1, corsa1.posiciones().toString())})
-	keyboard.d().onPressDo({corsa1.moverseHacia(este) game.say(corsa1, corsa1.posiciones().toString())})
-	keyboard.a().onPressDo({corsa1.moverseHacia(oeste) game.say(corsa1, corsa1.posiciones().toString())})
+	keyboard.w().onPressDo(
+		{ 
+			corsa1.moverArriba()
+			return game.say(corsa1, corsa1.posiciones().toString())
+		}
+	)
+	keyboard.s().onPressDo(
+		{ 
+			corsa1.moverAbajo()
+			return game.say(corsa1, corsa1.posiciones().toString())
+		}
+	)
+	keyboard.a().onPressDo(
+		{ 
+			corsa1.moverIzquierda()
+			return game.say(corsa1, corsa1.posiciones().toString())
+		}
+	)
+	keyboard.d().onPressDo(
+		{ 
+			corsa1.moverDerecha()
+			return game.say(corsa1, corsa1.posiciones().toString())
+		}
+	)
 	game.addVisual(corsa1)
-
-	game.onCollideDo(corsa1, {algo => algo.recibirGolpe()
-	if(algo.resistencia() == 0){
-		game.removeVisual(algo)
-	}
-	corsa1.position(corsa1.posiciones().asList().get(1))
-	})
+	game.addVisual(pared)
+	game.onCollideDo(
+		corsa1,
+		{ algo =>
+			algo.recibirChoque()
+			if (algo.resistencia() == 0) game.removeVisual(algo)
+			return corsa1.position(corsa1.posicionAnterior())
+		}
+	)
 	
 	game.start()
 }

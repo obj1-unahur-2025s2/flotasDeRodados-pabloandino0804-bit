@@ -1,10 +1,93 @@
 // Etapa 1
 // Chevrolet Corsa
 class Corsa {
-  const property color
-  method capacidad() = 4
-  method velocidadMaxima() = 150
+  //const color
+  const property image
+  var property position = new Position(x = 4, y = 7) // game.at(4,7) lo mismo
+  const posiciones = #{position}
+  var posicionAnterior = position
+  
+  method posicionAnterior() = posicionAnterior
+  
+  method posiciones() = posiciones
+  
+  method pasajeros() = 4
+  
+  method velocidad() = 150
+  
   method peso() = 1300
+  
+  //method color() = color
+  method pasoPor(posicion) = posiciones.contains(posicion)
+  
+  method moverArriba() {
+    if (self.position().y() < (game.height() - 1)) {
+      posicionAnterior = self.position()
+      self.position(self.position().up(1))
+      self.agregarPosicion(self.position())
+    }
+  }
+  
+  method moverAbajo() {
+    if (self.position().y() > 0) {
+      posicionAnterior = self.position()
+      self.position(self.position().down(1))
+      self.agregarPosicion(self.position())
+    }
+  }
+  
+  method moverIzquierda() {
+    if (self.position().x() > 0) {
+      posicionAnterior = self.position()
+      self.position(self.position().left(1))
+      self.agregarPosicion(self.position())
+    }
+  }
+  
+  method moverDerecha() {
+    if (self.position().x() < (game.width() - 1)) {
+      posicionAnterior = self.position()
+      self.position(self.position().right(1))
+      self.agregarPosicion(self.position())
+    }
+  }
+  
+  method agregarPosicion(unaPosicion) {
+    posiciones.add(unaPosicion)
+  }
+}
+
+object norte {
+  method direcc() = self
+}
+
+object sur {
+  method direcc() = self
+}
+
+object oeste {
+  method direcc() = self
+}
+
+object este {
+  method direcc() = self
+}
+
+object pared {
+  var property image = "paredLadrillos3.jpg"
+  var property position = new Position(x = 8, y = 3)
+  var resistencia = 3
+  
+  method recibirChoque() {
+    resistencia = 0.max(resistencia - 1)
+    if (resistencia == 2) {
+      image = "paredLadrillos2.jpg"
+    } else {
+      image = "paredLadrillos1.jpg"
+    }
+  }
+  
+  method resistencia() = resistencia
 }
 
 // Renault Kwid

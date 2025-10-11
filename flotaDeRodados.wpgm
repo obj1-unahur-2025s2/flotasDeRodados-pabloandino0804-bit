@@ -1,10 +1,10 @@
 import wollok.game.*
-import rodados2.*
+import rodados.*
 
 program CorsasEnElJuego {
 	game.title("Corsas en el game")
-	game.height(10)
-	game.width(10)
+	game.height(15)
+	game.width(15)
 
 	// add assets in asset folder, for example, for the background
   // game.boardGround("fondo2.jpg")

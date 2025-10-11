@@ -2,28 +2,10 @@
 // Chevrolet Corsa
 class Corsa {
   const property color
-  method posiciones() = posiciones
   method capacidad() = 4
   method velocidadMaxima() = 150
   method peso() = 1300
 }
-
-object norte {
-    method direcc() = self
-}
-
-object sur {
-    method direcc() = self
-}
-
-object oeste {
-    method direcc() = self
-}
-
-object este {
-    method direcc() = self
-}
-
 
 // Renault Kwid
 class Kwid {
